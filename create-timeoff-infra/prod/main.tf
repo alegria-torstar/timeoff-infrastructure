@@ -12,7 +12,7 @@ terraform {
 }
 
 module "automated_content_lambdas" {
-  source = "../modules/ec2/create-delete-ASG"
+  source = "../../modules/ec2/create-delete-ASG"
   app_name = "timeoff"
   environment = "prod"
 }

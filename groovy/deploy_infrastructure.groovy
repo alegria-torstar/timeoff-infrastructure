@@ -39,7 +39,6 @@ pipeline {
          stage("Execution") {
             steps {
                 script {
-                    print "Terraform action is: $params.TERRAFOM_ACTION"
                     if (params.TERRAFORM_ACTION == "apply") {
                         sh"""
                         cd create-timeoff-infra/prod

@@ -1,0 +1,11 @@
+prod:
+  port: 3000
+  subnets: ["subnet-0da6c4c03bd47d552", "subnet-05e76d978c25003fa"]
+  vpc_id: "vpc-0c69d2405170e086a"
+  min_size: 1
+  max_size: 10
+  desired_capacity: 1
+  ami: "ami-0b5eea76982371e91"
+  volume_size: 8
+  inst_type: "t2.micro"
+  key_name: "Operations-Luis"

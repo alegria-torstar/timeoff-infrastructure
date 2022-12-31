@@ -127,7 +127,7 @@ resource "aws_launch_template" "app_lt" {
         }
     }
 
-    user_data = filebase64("${path.module}bash/${var.app_name}.sh")
+    user_data = filebase64("${path.module}/bash/${var.app_name}.sh")
 }
 
 # Autoscaling group of the application

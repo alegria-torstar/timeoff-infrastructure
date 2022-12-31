@@ -14,53 +14,50 @@ pipeline {
         TERRAFORM_ACTION = "${SelectTerraformOperation}"
     }
     stages {
-        stage("Preparation") {
+
+         stage("Execution") {
             steps {
                 script {
-
-                    withCredentials([[
+                     withCredentials([[
                         $class: 'AmazonWebServicesCredentialsBinding',
                         credentialsId: "f3fd2446-5adb-4979-a1d1-2270597b6466",
                         accessKeyVariable: 'AWS_ACCESS_KEY_ID',
                         secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
                     ]]) {
-                        sh"""
-                        cd create-timeoff-infra
-                        terraform --version
-                        terraform init -no-color -backend-config="access_key=${env.AWS_ACCESS_KEY_ID}" -backend-config="secret_key=${env.AWS_SECRET_ACCESS_KEY}"
-                        """
+                        if (TERRAFORM_ACTION == "apply") {
+                            sh"""
+                            cd create-timeoff-infra/prod
+                            terraform --version
+                            terraform init -no-color -backend-config="access_key=${env.AWS_ACCESS_KEY_ID}" -backend-config="secret_key=${env.AWS_SECRET_ACCESS_KEY}"
+                            terraform apply -auto-approve -no-color
+                            """
+                        }
+                        else if (TERRAFORM_ACTION == "destroy_preview") {
+                            sh"""
+                            cd create-timeoff-infra/prod
+                            terraform --version
+                            terraform init -no-color -backend-config="access_key=${env.AWS_ACCESS_KEY_ID}" -backend-config="secret_key=${env.AWS_SECRET_ACCESS_KEY}"
+                            terraform plan -destroy -no-color
+                            """
+                        }
+                        else if (TERRAFORM_ACTION == "destroy") {
+                            sh"""
+                            cd create-timeoff-infra/prod
+                            terraform --version
+                            terraform init -no-color -backend-config="access_key=${env.AWS_ACCESS_KEY_ID}" -backend-config="secret_key=${env.AWS_SECRET_ACCESS_KEY}"
+                            terraform destroy -auto-approve -no-color
+                            """
+                        }
+                        else if (TERRAFORM_ACTION == "plan"){
+                            sh"""
+                            cd create-timeoff-infra/prod
+                            terraform --version
+                            terraform init -no-color -backend-config="access_key=${env.AWS_ACCESS_KEY_ID}" -backend-config="secret_key=${env.AWS_SECRET_ACCESS_KEY}"
+                            terraform plan -no-color
+                            """
+                        } 
                     }
-                }
-            }
-        }
-
-         stage("Execution") {
-            steps {
-                script {
-                    if (TERRAFORM_ACTION == "apply") {
-                        sh"""
-                        cd create-timeoff-infra/prod
-                        terraform apply -auto-approve -no-color
-                        """
-                    }
-                    else if (TERRAFORM_ACTION == "destroy_preview") {
-                        sh"""
-                        cd create-timeoff-infra/prod
-                        terraform plan -destroy -no-color
-                        """
-                    }
-                    else if (TERRAFORM_ACTION == "destroy") {
-                        sh"""
-                        cd create-timeoff-infra/prod
-                        terraform destroy -auto-approve -no-color
-                        """
-                    }
-                    else if (TERRAFORM_ACTION == "plan"){
-                        sh"""
-                        cd create-timeoff-infra/prod
-                        terraform plan -no-color
-                        """
-                    } 
+                    
                 }
             }
         }

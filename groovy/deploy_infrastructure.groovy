@@ -6,14 +6,12 @@ pipeline {
     agent any
 
     parameters {
-        choice(name: 'TERRAFORM_ACTION', choices: ['', "apply", "destroy_preview", "destroy", "plan"], description: 'Pick something')
+        choice(name: 'SelectTerraformOperation', choices: ['', "apply", "destroy_preview", "destroy", "plan"], description: 'Pick something')
     }
 
     environment 
     {
-        LAMBDA_NAME = "${LambdaName}"
         TERRAFORM_ACTION = "${SelectTerraformOperation}"
-        AWS_PROFILE = "torstaraemprod"
     }
     stages {
         stage("Preparation") {
@@ -39,32 +37,30 @@ pipeline {
          stage("Execution") {
             steps {
                 script {
-                    if (params.TERRAFORM_ACTION == "apply") {
+                    if (TERRAFORM_ACTION == "apply") {
                         sh"""
                         cd create-timeoff-infra/prod
                         terraform apply -auto-approve -no-color
                         """
                     }
-                    else if (params.TERRAFORM_ACTION == "destroy_preview") {
+                    else if (TERRAFORM_ACTION == "destroy_preview") {
                         sh"""
                         cd create-timeoff-infra/prod
                         terraform plan -destroy -no-color
                         """
                     }
-                    else if (params.TERRAFORM_ACTION == "destroy") {
+                    else if (TERRAFORM_ACTION == "destroy") {
                         sh"""
                         cd create-timeoff-infra/prod
                         terraform destroy -auto-approve -no-color
                         """
                     }
-                    else if (params.TERRAFORM_ACTION == "plan"){
+                    else if (TERRAFORM_ACTION == "plan"){
                         sh"""
                         cd create-timeoff-infra/prod
                         terraform plan -no-color
                         """
-                    } else {
-                        print "I entered else"
-                    }
+                    } 
                 }
             }
         }

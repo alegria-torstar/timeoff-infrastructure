@@ -39,26 +39,26 @@ pipeline {
          stage("Execution") {
             steps {
                 script {
-                    print "Terraform action is: $TERRAFOM_ACTION"
-                    if (TERRAFORM_ACTION == "apply") {
+                    print "Terraform action is: $params.TERRAFOM_ACTION"
+                    if (params.TERRAFORM_ACTION == "apply") {
                         sh"""
                         cd create-timeoff-infra/prod
                         terraform apply -auto-approve -no-color
                         """
                     }
-                    else if (TERRAFORM_ACTION == "destroy_preview") {
+                    else if (params.TERRAFORM_ACTION == "destroy_preview") {
                         sh"""
                         cd create-timeoff-infra/prod
                         terraform plan -destroy -no-color
                         """
                     }
-                    else if (TERRAFORM_ACTION == "destroy") {
+                    else if (params.TERRAFORM_ACTION == "destroy") {
                         sh"""
                         cd create-timeoff-infra/prod
                         terraform destroy -auto-approve -no-color
                         """
                     }
-                    else if (TERRAFORM_ACTION == "plan"){
+                    else if (params.TERRAFORM_ACTION == "plan"){
                         sh"""
                         cd create-timeoff-infra/prod
                         terraform plan -no-color

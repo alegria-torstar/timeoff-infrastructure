@@ -9,7 +9,7 @@ resource "aws_alb" "app_alb" {
   internal           = false
   load_balancer_type = "application"
   security_groups    = [aws_security_group.alb_sg.id]
-  subnets            = local.config[var.app_name]["subnets"]
+  subnets            = local.config[var.environment]["subnets"]
 
   tags = {
     Name = "${var.app_name}-alb"

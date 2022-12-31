@@ -14,11 +14,19 @@ pipeline {
         stage("Preparation") {
             steps {
                 script {
-                    sh"""
-                    cd create-timeoff-infra
-                    terraform --version
-                    terraform init -no-color
-                    """
+
+                    withCredentials([[
+                        $class: 'AmazonWebServicesCredentialsBinding',
+                        credentialsId: "credentials-id-here",
+                        accessKeyVariable: 'AWS_ACCESS_KEY_ID',
+                        secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
+                    ]]) {
+                        sh"""
+                        cd create-timeoff-infra
+                        terraform --version
+                        terraform init -no-color -backend-config="access_key=${env.AWS_ACCESS_KEY_ID}" -backend-config="secret_key=${env.AWS_SECRET_ACCESS_KEY}"
+                        """
+                    }
                 }
             }
         }

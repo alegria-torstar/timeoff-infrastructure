@@ -62,6 +62,8 @@ pipeline {
                         cd create-timeoff-infra/prod
                         terraform plan -no-color
                         """
+                    } else {
+                        print "I entered else"
                     }
                 }
             }

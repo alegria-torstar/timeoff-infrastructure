@@ -6,7 +6,7 @@ pipeline {
     agent any
 
     parameters {
-        choice(name: 'TERRAFORM_ACTION', choices: ['', 'apply', 'destroy_preview', 'destroy', 'plan'], description: 'Pick something')
+        choice(name: 'TERRAFORM_ACTION', choices: ['', "apply", "destroy_preview", "destroy", "plan"], description: 'Pick something')
     }
 
     environment 

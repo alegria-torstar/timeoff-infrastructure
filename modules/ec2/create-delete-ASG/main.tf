@@ -114,7 +114,7 @@ resource "aws_launch_template" "app_lt" {
     instance_type = local.config[var.environment]["inst_type"]
 
     network_interfaces {
-        associate_public_ip_address = false
+        associate_public_ip_address = true
         security_groups = [aws_security_group.asg_sg.id]
     }
 

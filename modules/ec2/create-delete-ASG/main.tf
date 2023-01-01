@@ -137,7 +137,7 @@ resource "aws_autoscaling_group" "app_asg" {
     max_size             = local.config[var.environment]["max_size"]
   
     health_check_type    = "ELB"
-    target_group_arns = [aws_alb_target_group.app_tg.arn]
+    #target_group_arns = [aws_alb_target_group.app_tg.arn]
     launch_template{
         id = aws_launch_template.app_lt.id
     }

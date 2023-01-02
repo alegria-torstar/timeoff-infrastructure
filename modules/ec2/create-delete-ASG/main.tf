@@ -114,7 +114,6 @@ resource "aws_launch_template" "app_lt" {
     image_id = local.config[var.environment]["ami"]
     instance_initiated_shutdown_behavior = "terminate"
     instance_type = local.config[var.environment]["inst_type"]
-    target_group_arns = [aws_alb_target_group.app_tg.arn]
 
     network_interfaces {
         associate_public_ip_address = true

@@ -185,7 +185,7 @@ resource "aws_cloudwatch_metric_alarm" "web_cpu_alarm_up" {
   threshold = "60"
 
   dimensions = {
-    AutoScalingGroupName = aws_autoscaling_group.web.name
+    AutoScalingGroupName = aws_autoscaling_group.app_asg.name
   }
 
   alarm_description = "This metric monitor EC2 instance CPU utilization"
@@ -213,7 +213,7 @@ resource "aws_cloudwatch_metric_alarm" "web_cpu_alarm_down" {
   threshold = "10"
 
   dimensions = {
-    AutoScalingGroupName = aws_autoscaling_group.web.name
+    AutoScalingGroupName = aws_autoscaling_group.app_asg.name
   }
 
   alarm_description = "This metric monitor EC2 instance CPU utilization"

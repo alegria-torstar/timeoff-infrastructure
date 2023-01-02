@@ -59,6 +59,13 @@ resource "aws_security_group" "asg_sg" {
         protocol    = "tcp"
         security_groups  = [aws_security_group.alb_sg.id]
     }
+    # SSH access for any ip inside the VPC
+    ingress {
+        from_port   = 22
+        to_port     = 22
+        protocol    = "tcp"
+        cidr_blocks = ["172.31.0.0/16"]
+    }
     # Outbound Rules
     # Internet access to anywhere
     egress {

@@ -86,6 +86,7 @@ resource "aws_alb_target_group" "app_tg" {
     matcher             = "200-499"
   }
 }
+
 # Listener for the laod balancer
 resource "aws_alb_listener" "alb_listener" {
   load_balancer_arn = aws_alb.app_alb.arn
@@ -102,10 +103,11 @@ resource "aws_launch_template" "app_lt" {
     name = "${var.app_name}-lt"
 
     block_device_mappings {
-        device_name = "/dev/sda1"
+        device_name = "/dev/xvda"
 
         ebs {
-        volume_size = local.config[var.environment]["volume_size"]
+            volume_type = "gp2"
+            volume_size = local.config[var.environment]["volume_size"]
         }
     }
     key_name = local.config[var.environment]["key_name"]
@@ -116,6 +118,7 @@ resource "aws_launch_template" "app_lt" {
     network_interfaces {
         associate_public_ip_address = true
         security_groups = [aws_security_group.asg_sg.id]
+        subnet_id = "subnet-0da6c4c03bd47d552"
     }
 
     tag_specifications {
@@ -126,7 +129,7 @@ resource "aws_launch_template" "app_lt" {
         }
     }
 
-    #user_data = filebase64("${path.module}/bash/${var.app_name}.sh")
+    user_data = filebase64("${path.module}/bash/${var.app_name}.sh")
 }
 
 # Autoscaling group of the application

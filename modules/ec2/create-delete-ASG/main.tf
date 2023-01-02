@@ -69,7 +69,6 @@ resource "aws_security_group" "asg_sg" {
     }
 }
 
-
 # Target group for the application
 resource "aws_alb_target_group" "app_tg" {
   name       = "${var.app_name}-tg"
@@ -98,6 +97,7 @@ resource "aws_alb_listener" "alb_listener" {
     type             = "forward"
   }
 }
+
 # Launch template for the autoscaling group
 resource "aws_launch_template" "app_lt" {
     name = "${var.app_name}-lt"
@@ -114,6 +114,7 @@ resource "aws_launch_template" "app_lt" {
     image_id = local.config[var.environment]["ami"]
     instance_initiated_shutdown_behavior = "terminate"
     instance_type = local.config[var.environment]["inst_type"]
+    target_group_arns = [aws_alb_target_group.app_tg.arn]
 
     network_interfaces {
         associate_public_ip_address = true

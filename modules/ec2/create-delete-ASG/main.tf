@@ -110,18 +110,6 @@ resource "aws_alb_listener" "alb_listener" {
   }
 }
 
-# Listener for the laod balancer
-resource "aws_alb_listener" "alb_listener" {
-  load_balancer_arn = aws_alb.app_alb.arn
-  port = "80"
-  protocol = "HTTP"
-
-  default_action {
-    target_group_arn = aws_alb_target_group.app_tg.id
-    type             = "forward"
-  }
-}
-
 # Launch template for the autoscaling group
 resource "aws_launch_template" "app_lt" {
     name = "${var.app_name}-lt"

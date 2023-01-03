@@ -16,4 +16,5 @@ Some exampled of the infrastructure created on AWS would be the following ones:
 
 <img width="1415" alt="Screen Shot 2023-01-02 at 19 18 55" src="https://user-images.githubusercontent.com/111317556/210289205-b23c54c6-c263-4ef0-acc2-be0ac80b76dd.png">
 
+The application can be accessed uisng the folling dns 
 As I designed everything based on the free resources provided by AWS, the best appraoch would be the following one:

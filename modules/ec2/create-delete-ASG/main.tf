@@ -130,14 +130,6 @@ resource "aws_launch_template" "app_lt" {
         device_index = 0
     }
 
-    network_interfaces {
-        associate_public_ip_address = false
-        security_groups = [aws_security_group.asg_sg.id]
-        subnet_id = local.config[var.environment]["subnets"][1]
-        network_card_index = 1
-        device_index = 1
-    }
-
     tag_specifications {
         resource_type = "instance"
 

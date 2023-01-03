@@ -123,7 +123,7 @@ resource "aws_launch_template" "app_lt" {
     instance_type = local.config[var.environment]["inst_type"]
 
     network_interfaces {
-        associate_public_ip_address = true
+        associate_public_ip_address = false
         security_groups = [aws_security_group.asg_sg.id]
         #subnet_id = local.config[var.environment]["subnets"][0]
     }

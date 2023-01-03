@@ -6,7 +6,11 @@ As I wanted to use the free resources as much as possible, I decided to use an a
 
 The best design would be to use a Redis inside Elasticache so as to share the same data among all nodes. Furthemore, I did not put any server in multiple az as the instance type that I am using does not support multiple network interface cards. All of the infrastructure was deployed using a Jenkins pipeline:
 
+<img width="1382" alt="Screen Shot 2023-01-02 at 19 13 21" src="https://user-images.githubusercontent.com/111317556/210288929-296b313e-79e0-4554-911a-e64aa5be188d.png">
 
+Some exampled of the infrastructure created on AWS would be the following ones:
+
+<img width="1382" alt="Screen Shot 2023-01-02 at 19 13 21" src="https://user-images.githubusercontent.com/111317556/210288929-296b313e-79e0-4554-911a-e64aa5be188d.png">
 
 
 

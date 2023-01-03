@@ -126,8 +126,6 @@ resource "aws_launch_template" "app_lt" {
         associate_public_ip_address = false
         security_groups = [aws_security_group.asg_sg.id]
         subnet_id = local.config[var.environment]["subnets"][0]
-        network_card_index = 0
-        device_index = 0
     }
 
     tag_specifications {

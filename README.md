@@ -10,7 +10,7 @@ The best design would be to use a Redis inside Elasticache so as to share the sa
 
 Some exampled of the infrastructure created on AWS would be the following ones:
 
-<img width="1382" alt="Screen Shot 2023-01-02 at 19 13 21" src="https://user-images.githubusercontent.com/111317556/210288929-296b313e-79e0-4554-911a-e64aa5be188d.png">
+<img width="1473" alt="Screen Shot 2023-01-02 at 19 16 09" src="https://user-images.githubusercontent.com/111317556/210289062-fd4c513d-1416-4f9a-a7ae-dfaa84cd81cd.png">
 
 
 

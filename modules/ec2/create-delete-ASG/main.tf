@@ -125,7 +125,7 @@ resource "aws_launch_template" "app_lt" {
     network_interfaces {
         associate_public_ip_address = true
         security_groups = [aws_security_group.asg_sg.id]
-        subnet_id = local.config[var.environment]["subnets"][0]
+        #subnet_id = local.config[var.environment]["subnets"][0]
     }
 
     tag_specifications {

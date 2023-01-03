@@ -20,4 +20,7 @@ The application can be accessed using the folling dns: http://timeoff-alb-716649
 
 As I designed everything based on the free resources provided by AWS, the best appraoch would be the following one:
 
+<img width="988" alt="Screen Shot 2023-01-02 at 18 47 56" src="https://user-images.githubusercontent.com/111317556/210287932-c737f9e9-a4d2-40f2-a6a6-fb18ca1ed27a.png">
+
+By creating a Docker file with the application running, we would be able to use Fargate inside ECS or even an EKS cluster. By running everything inside conatiners, we would reduce any cost and at the same time, we would have a high availability.
 

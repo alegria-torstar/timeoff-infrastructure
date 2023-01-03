@@ -12,6 +12,6 @@ Some exampled of the infrastructure created on AWS would be the following ones:
 
 <img width="1473" alt="Screen Shot 2023-01-02 at 19 16 09" src="https://user-images.githubusercontent.com/111317556/210289062-fd4c513d-1416-4f9a-a7ae-dfaa84cd81cd.png">
 
-
+<img width="1485" alt="Screen Shot 2023-01-02 at 19 15 21" src="https://user-images.githubusercontent.com/111317556/210289110-5cddeec9-a537-4268-92a4-89450f13fca6.png">
 
 As I designed everything based on the free resources provided by AWS, the best appraoch would be the following one:
